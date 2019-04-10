@@ -22,6 +22,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     mkdir -p "/usr/lib/jvm" && \
     mv "/tmp/jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}" "/usr/lib/jvm/java-${JAVA_VERSION}-oracle" && \
     ln -s "java-${JAVA_VERSION}-oracle" "$JAVA_HOME" && \
+    ln -s "$JAVA_HOME" /docker-java-home && \
+    { \
+        echo '#!/bin/sh'; \
+        echo 'set -e'; \
+        echo; \
+        echo 'dirname "$(dirname "$(readlink -f "$(which javac || which java)")")"'; \
+    } > /usr/local/bin/docker-java-home \
+    && chmod +x /usr/local/bin/docker-java-home && \
     unzip -jo -d "$JAVA_HOME/jre/lib/security" "/tmp/jce_policy-${JAVA_VERSION}.zip" && \
     ln -s "$JAVA_HOME/bin/"* "/usr/bin/" && \
     rm -rf /tmp/*
