@@ -74,7 +74,7 @@ RUN set -e \
    fi
 
 RUN apt-get update; \
-    apt-get install -y --no-install-recommends lsb-release; \
+    apt-get install -y --no-install-recommends lsb-release libfontconfig; \
     rm -rf /var/lib/apt/lists/*; \
     ln -s "$JAVA_HOME"/lib/tools.jar ./lib/tools.jar
 
