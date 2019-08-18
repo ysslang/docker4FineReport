@@ -54,7 +54,6 @@ RUN set -eux; \
                   tzdata \
                   iproute2 \
                   fontconfig \
-                  lsb-release \
   ; \
   \
 ## Unpack FineReport 10.0 package
