@@ -1,7 +1,7 @@
 #
-# FineReport 10.0 Dockerfile
+# FineReport 10.0 alpine Dockerfile
 #
-# Version 1.0.1 2019081719
+# Version 0.0.1 2019081904
 
 # https://github.com/ysslang/finedocker
 # https://www.finereport.com
