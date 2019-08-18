@@ -46,6 +46,7 @@ RUN set -eux; \
   echo $TZ > /etc/timezone; \
   \
 ## Install some necessary packages
+  echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
   apk add --no-cache \
                   gosu \
                   curl \
