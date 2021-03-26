@@ -1,0 +1,83 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+          
+          
+      - name: Build and push Docker images
+        # You may pin to the exact commit or the version.
+        # uses: docker/build-push-action@9379083e426e2e84abb80c8c091f5cdeb7d3fd7a
+        uses: docker/build-push-action@v2.3.0
+        with:
+          # Builder instance
+          builder: # optional
+          # Build's context is the set of files located in the specified PATH or URL
+          context: # optional
+          # Path to the Dockerfile
+          file: # optional
+          # List of build-time variables
+          build-args: # optional
+          # List of metadata for an image
+          labels: # optional
+          # List of tags
+          tags: # optional
+          # Always attempt to pull a newer version of the image
+          pull: # optional, default is false
+          # Sets the target stage to build
+          target: # optional
+          # List of extra privileged entitlement (eg. network.host,security.insecure)
+          allow: # optional
+          # Do not use cache when building the image
+          no-cache: # optional, default is false
+          # List of target platforms for build
+          platforms: # optional
+          # Load is a shorthand for --output=type=docker
+          load: # optional, default is false
+          # Push is a shorthand for --output=type=registry
+          push: # optional, default is false
+          # List of output destinations (format: type=local,dest=path)
+          outputs: # optional
+          # List of external cache sources for buildx (eg. user/app:cache, type=local,src=path/to/dir)
+          cache-from: # optional
+          # List of cache export destinations for buildx (eg. user/app:cache, type=local,dest=path/to/dir)
+          cache-to: # optional
+          # List of secrets to expose to the build (eg. key=string, GIT_AUTH_TOKEN=mytoken)
+          secrets: # optional
+          # List of secret files to expose to the build (eg. key=filename, MY_SECRET=./secret.txt)
+          secret-files: # optional
+          # List of SSH agent socket or keys to expose to the build
+          ssh: # optional
+          # GitHub Token used to authenticate against a repository for Git context
+          github-token: # optional, default is ${{ github.token }}
